@@ -1,0 +1,80 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+"""Место работы"""
+type Experience {
+  """Достижения на этом месте"""
+  achievements: [String!]!
+
+  """Компания"""
+  company: String!
+
+  """Дата окончания, ISO 8601"""
+  endDate: String
+
+  """Период работы, собранный из дат"""
+  period: String!
+
+  """Должность"""
+  position: String!
+
+  """Дата начала, ISO 8601"""
+  startDate: String!
+}
+
+"""Ссылка на профессиональный ресурс"""
+type Link {
+  """Подпись ссылки"""
+  label: String!
+
+  """Адрес ресурса"""
+  url: String!
+}
+
+"""Публичная визитка"""
+type Profile {
+  """Краткое описание"""
+  description: String!
+
+  """Опыт работы"""
+  experience: [Experience!]!
+
+  """Профессиональные ссылки"""
+  links: [Link!]!
+
+  """Имя"""
+  name: String!
+
+  """Проекты"""
+  projects: [Project!]!
+
+  """Навыки"""
+  skills: [Skill!]!
+}
+
+"""Проект"""
+type Project {
+  """Краткое описание"""
+  description: String
+
+  """Название проекта"""
+  name: String!
+
+  """Ссылка на проект или репозиторий"""
+  url: String!
+}
+
+type Query {
+  """Публичный профиль и связанные с ним разделы визитки"""
+  profile: Profile!
+}
+
+"""Навык"""
+type Skill {
+  """Группа навыков"""
+  category: String
+
+  """Название навыка"""
+  name: String!
+}

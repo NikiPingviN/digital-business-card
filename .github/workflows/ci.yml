@@ -1,0 +1,39 @@
+name: ci
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:16-alpine
+        env:
+          POSTGRES_USER: card
+          POSTGRES_PASSWORD: card
+          POSTGRES_DB: business_card
+        ports:
+          - 5432:5432
+        options: >-
+          --health-cmd "pg_isready -U card -d business_card"
+          --health-interval 5s
+          --health-timeout 5s
+          --health-retries 10
+    env:
+      DATABASE_URL: postgresql://card:card@localhost:5432/business_card?schema=public
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npx prisma generate
+      - run: npm test
+      - run: npm run test:e2e
+      - run: npm run build
