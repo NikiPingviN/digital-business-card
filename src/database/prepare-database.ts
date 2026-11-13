@@ -1,8 +1,11 @@
 import { Logger } from '@nestjs/common';
 import { execFileSync } from 'node:child_process';
+import { createRequire } from 'node:module';
 import { Client } from 'pg';
 import { createPrismaClient } from '../prisma/create-prisma-client';
 import { seedProfile } from './seed';
+
+const nodeRequire = createRequire(__filename);
 
 const logger = new Logger('Database');
 
@@ -15,12 +18,13 @@ export async function prepareDatabase(): Promise<void> {
   await waitForDatabase(connectionString);
 
   logger.log('Applying migrations');
-  execFileSync('npx', ['--no-install', 'prisma', 'migrate', 'deploy'], {
+  execFileSync(process.execPath, [nodeRequire.resolve('prisma/build/index.js'), 'migrate', 'deploy'], {
     stdio: 'inherit',
+    cwd: process.cwd(),
     env: {
-    ...process.env,
-    PRISMA_HIDE_UPDATE_MESSAGE: '1',
-  },
+      ...process.env,
+      PRISMA_HIDE_UPDATE_MESSAGE: '1',
+    },
   });
 
   const prisma = createPrismaClient();

@@ -119,4 +119,6 @@ Prisma ORM 7. Клиент генерируется в `src/generated` и не �
 
 ## Деплой
 
-Образ самодостаточный: внутри есть Prisma CLI, схема и миграции. На Render или Railway достаточно веб-сервиса из этого Dockerfile и managed Postgres. В переменные окружения сервиса нужно передать `DATABASE_URL` и `PORT`. После старта Sandbox будет на `/graphql`.
+Образ самодостаточный: внутри есть Prisma CLI, схема и миграции. На Render или Railway достаточно веб-сервиса из этого Dockerfile и managed Postgres. В переменные окружения сервиса нужно передать `DATABASE_URL` и `PORT`. После старта страница визитки будет на `/`, Sandbox — на `/graphql`.
+
+На Vercel сборка сначала выполняет `prisma generate`: клиент не хранится в git. В настройках проекта нужна переменная `DATABASE_URL` с адресом доступного из интернета PostgreSQL. Локальный Docker Postgres с `localhost` для Vercel не подходит. Первый запрос применяет миграции и заполняет профиль.
