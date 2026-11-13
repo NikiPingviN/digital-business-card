@@ -58,5 +58,16 @@ export const profileContent: ProfileContent = {
       url: 'https://nodejs-val-tra.vercel.app',
       description: 'Дашборд на Next.js, опубликованный на Vercel.',
     },
+    {
+      name: 'CRM',
+      url: 'https://github.com/NikiPingviN/crm',
+      description:
+        'CRM на TypeScript: фронтенд, бэкенд и Docker. Репозиторий: github.com/NikiPingviN/crm.',
+    },
+    {
+      name: 'BarBot',
+      url: 'https://github.com/NikiPingviN/BarBot',
+      description: 'Проект на JavaScript. Репозиторий: github.com/NikiPingviN/BarBot.',
+    },
   ],
 };

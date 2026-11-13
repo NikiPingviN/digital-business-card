@@ -80,7 +80,7 @@ describe('Profile GraphQL', () => {
     );
     assert.deepEqual(
       body.data.profile.projects.map((project) => project.name),
-      ['CloudConvert', 'Node.js dashboard'],
+      ['CloudConvert', 'Node.js dashboard', 'CRM', 'BarBot'],
     );
   });
 

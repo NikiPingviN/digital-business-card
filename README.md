@@ -1,6 +1,6 @@
 # Цифровая визитка
 
-GraphQL API, которое отдаёт профиль, навыки, опыт и проекты. Интерфейс для запросов — Apollo Sandbox на `/graphql`.
+Русская страница визитки на `/` и GraphQL API, которое отдаёт профиль, навыки, опыт и проекты. Запросы к API удобно смотреть в Apollo Sandbox на `/graphql`.
 
 Стек: TypeScript, Node.js, NestJS, Prisma, GraphQL, PostgreSQL, Docker.
 
@@ -14,6 +14,7 @@ docker compose up --build
 
 При старте контейнер сам дожидается PostgreSQL, применяет миграции и заполняет базу данными из `src/profile/profile.content.ts`. Повторный запуск не дублирует строки: перед записью профиль пересобирается в одной транзакции.
 
+- Визитка: http://localhost:3000/
 - Apollo Sandbox: http://localhost:3000/graphql
 - Проверка, что процесс жив: http://localhost:3000/health
 

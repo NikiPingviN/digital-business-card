@@ -6,11 +6,13 @@ import { HealthModule } from './health/health.module';
 import { PrismaModule } from './prisma/prisma.module';
 import { ProfileModule } from './profile/profile.module';
 import { ProfileService } from './profile/profile.service';
+import { SiteModule } from './site/site.module';
 
 @Module({
   imports: [
     PrismaModule,
     ProfileModule,
+    SiteModule,
     HealthModule,
     GraphQLModule.forRootAsync<ApolloDriverConfig>({
       driver: ApolloDriver,

@@ -13,7 +13,8 @@ async function bootstrap(): Promise<void> {
 
   const port = Number(process.env.PORT ?? 3000);
   await app.listen(port);
-  Logger.log(`Apollo Sandbox is ready at http://localhost:${port}/graphql`, 'Bootstrap');
+  Logger.log(`Визитка: http://localhost:${port}/`, 'Bootstrap');
+  Logger.log(`Apollo Sandbox: http://localhost:${port}/graphql`, 'Bootstrap');
 }
 
 bootstrap().catch((error: unknown) => {
