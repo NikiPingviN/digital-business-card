@@ -37,7 +37,7 @@ export async function prepareDatabase(): Promise<void> {
 }
 
 async function waitForDatabase(connectionString: string): Promise<void> {
-  const attempts = 30;
+  const attempts = process.env.VERCEL ? 3 : 30;
 
   for (let attempt = 1; attempt <= attempts; attempt += 1) {
     const client = new Client({ connectionString });

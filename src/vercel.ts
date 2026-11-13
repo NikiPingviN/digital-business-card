@@ -30,10 +30,18 @@ export default function handler(request: Request, response: Response, next: Next
       app(request, response, next);
     })
     .catch((error: unknown) => {
-      if (response.headersSent) {
-        return;
-      }
-      const message = error instanceof Error ? error.message : 'Не удалось запустить приложение';
-      response.status(500).json({ message });
+      console.error(error);
+      sendPlainError(response, error);
     });
+}
+
+function sendPlainError(response: Response, error: unknown): void {
+  if (response.headersSent) {
+    return;
+  }
+
+  const message = error instanceof Error ? (error.stack ?? error.message) : String(error);
+  response.statusCode = 500;
+  response.setHeader('content-type', 'text/plain; charset=utf-8');
+  response.end(message);
 }
